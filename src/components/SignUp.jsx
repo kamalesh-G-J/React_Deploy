@@ -21,7 +21,7 @@ const Signup = () => {
         roleName: roleArray,
       });
       alert(req.data || "Registered successfully!");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       alert("Error during Sign up",error);
     }
