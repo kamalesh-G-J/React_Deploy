@@ -4,6 +4,7 @@ import GetEmployees from "./components/GetEmployees";
 import AddEmployees from "./components/AddEmployees";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import TaskAssign from "./components/TaskAssign";
 const App = () => (
   <Router>
     <Navbar />
@@ -12,6 +13,7 @@ const App = () => (
        <Route path="/add" element={<AddEmployees />} />
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<SignUp />} />
+      <Route path="/task-assign/:empID" element={<TaskAssign />} />
     </Routes>
   </Router>
 );

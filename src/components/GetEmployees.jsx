@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const GetEmployees = () => {
   const [employees, setEmployees] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role"); 
   console.log("Stored Role:", localStorage.getItem("role"));
@@ -42,6 +44,15 @@ const GetEmployees = () => {
   return (
     <div className="container mt-4">
       <h2>Employee List</h2>
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search by employee name..."
+          value={searchTerm}
+          onChange={e => setSearchTerm(e.target.value)}
+        />
+      </div>
       <table className="table table-bordered">
         <thead className="thead-dark">
           <tr>
@@ -52,26 +63,28 @@ const GetEmployees = () => {
           </tr>
         </thead>
         <tbody>
-          {employees.map((emp) => (
-            <tr key={emp.empID}>
-              <td>{emp.empID}</td>
-              <td>{emp.name}</td>
-              <td>{emp.email}</td>
-              {role === "ROLE_ADMIN" && (
+          {employees
+            .filter(emp => emp.name.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((emp) => (
+              <tr key={emp.empID}>
+                <td>{emp.empID}</td>
                 <td>
-                  {role === "ROLE_ADMIN" && (
+                  <Link to={`/task-assign/${emp.empID}`}>{emp.name}</Link>
+                </td>
+                <td>{emp.email}</td>
+                {role === "ROLE_ADMIN" && (
+                  <td>
                     <button
                       onClick={() => handleDelete(emp.empID)}
                       className="btn btn-danger btn-sm me-2"
                     >
                       Delete
                     </button>
-                  )}
-                  <button className="btn btn-primary btn-sm">Edit</button>
-                </td>
-              )}
-            </tr>
-          ))}
+                    <button className="btn btn-primary btn-sm">Edit</button>
+                  </td>
+                )}
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
