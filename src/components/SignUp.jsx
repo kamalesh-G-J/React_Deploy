@@ -9,12 +9,11 @@ const Signup = () => {
   const [userName, setUsername] = useState("");
   const [roleName, setRoles] = useState("");
   const navigate = useNavigate();
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_HOSTING_URL;
   async function addNewEmployee(e) {
     e.preventDefault();
     const roleArray = roleName.split(",").map((role) => role.trim());
     try {
-      const req = await axios.post(`${BACKEND_URL}api/auth/register`, {
+      const req = await axios.post("https://springboot-deploy-aajx.onrender.com/api/auth/register", {
         name,
         email,
         password,

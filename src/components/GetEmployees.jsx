@@ -7,12 +7,12 @@ const GetEmployees = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role"); 
-  const BACKEND_URL = import.meta.env.VITE_BACKEND_HOSTING_URL;
+  
   console.log("Stored Role:", localStorage.getItem("role"));
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}employee/get`, {
+        const response = await axios.get("https://springboot-deploy-aajx.onrender.com/employee/get", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
