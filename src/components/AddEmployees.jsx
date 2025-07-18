@@ -23,7 +23,7 @@ const AddEmployees= () => {
   const roleArray = roleName.split(",").map((role) => role.trim());
   try {
     const req = await axios.post(
-      `${BACKEND_URL}/employee/add`,
+      `${BACKEND_URL}employee/add`,
       {
         name,
         email,

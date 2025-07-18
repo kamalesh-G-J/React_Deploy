@@ -18,7 +18,7 @@ const TaskAssign = () => {
   useEffect(() => {
     const fetchEmployeeName = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/employee/get`, {
+        const response = await axios.get(`${BACKEND_URL}employee/get`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },                                         
@@ -35,7 +35,7 @@ const TaskAssign = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get(`https://springboot-deploy-aajx.onrender.com/todo/get/${empID}`, {
+        const response = await axios.get(`${BACKEND_URL}todo/get/${empID}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,7 +53,7 @@ const TaskAssign = () => {
   const handleAssignTask = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`https://springboot-deploy-aajx.onrender.com/todo/assign/${empID}`, {
+      await axios.post(`${BACKEND_URL}todo/assign/${empID}`, {
         title: newTaskTitle,
         status: newTaskStatus,
       }, {
@@ -65,7 +65,7 @@ const TaskAssign = () => {
       setNewTaskStatus("");
       // Refresh tasks
       setLoading(true);
-      const response = await axios.get(`https://springboot-deploy-aajx.onrender.com/todo/get/${empID}`, {
+      const response = await axios.get(`${BACKEND_URL}todo/get/${empID}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -85,7 +85,7 @@ const TaskAssign = () => {
 
   const handleStatusSave = async (taskId) => {
     try {
-      await axios.put(`https://springboot-deploy-aajx.onrender.com/todo/update-status/${taskId}`, {
+      await axios.put(`${BACKEND_URL}todo/update-status/${taskId}`, {
         status: editedStatus,
       }, {
         headers: {
@@ -96,7 +96,7 @@ const TaskAssign = () => {
       setEditedStatus("");
       // Refresh tasks
       setLoading(true);
-      const response = await axios.get(`https://springboot-deploy-aajx.onrender.com/todo/get/${empID}`, {
+      const response = await axios.get(`${BACKEND_URL}todo/get/${empID}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

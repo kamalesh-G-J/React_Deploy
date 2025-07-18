@@ -14,7 +14,7 @@ const Signup = () => {
     e.preventDefault();
     const roleArray = roleName.split(",").map((role) => role.trim());
     try {
-      const req = await axios.post(`${BACKEND_URL}/api/auth/register`, {
+      const req = await axios.post(`${BACKEND_URL}api/auth/register`, {
         name,
         email,
         password,

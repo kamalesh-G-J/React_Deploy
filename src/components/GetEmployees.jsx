@@ -12,7 +12,7 @@ const GetEmployees = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/employee/get`, {
+        const response = await axios.get(`${BACKEND_URL}employee/get`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
