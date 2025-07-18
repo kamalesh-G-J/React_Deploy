@@ -12,6 +12,7 @@ const AddEmployees= () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const role = localStorage.getItem("role");
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_HOSTING_URL;
   useEffect(() => {
     if (!token || role !== "ROLE_ADMIN") {
       navigate("/");
@@ -22,7 +23,7 @@ const AddEmployees= () => {
   const roleArray = roleName.split(",").map((role) => role.trim());
   try {
     const req = await axios.post(
-      "https://springboot-deploy-aajx.onrender.com/employee/add",
+      `${BACKEND_URL}/employee/add`,
       {
         name,
         email,

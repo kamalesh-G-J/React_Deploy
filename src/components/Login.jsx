@@ -6,6 +6,7 @@ const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_HOSTING_URL;
 
   const token = localStorage.getItem("token");
 
@@ -13,7 +14,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const request = await axios.post(
-        "https://springboot-deploy-aajx.onrender.com/api/auth/login",
+        `${BACKEND_URL}/api/auth/login`,
         {
           userName,
           password,

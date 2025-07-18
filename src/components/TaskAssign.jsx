@@ -14,14 +14,14 @@ const TaskAssign = () => {
   const role = localStorage.getItem("role");
   const [editingStatusId, setEditingStatusId] = useState(null);
   const [editedStatus, setEditedStatus] = useState("");
-
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_HOSTING_URL;
   useEffect(() => {
     const fetchEmployeeName = async () => {
       try {
-        const response = await axios.get("https://springboot-deploy-aajx.onrender.com/employee/get", {
+        const response = await axios.get(`${BACKEND_URL}/employee/get`, {
           headers: {
             Authorization: `Bearer ${token}`,
-          },
+          },                                         
         });
         const employee = response.data.find(emp => String(emp.empID) === String(empID));
         setEmployeeName(employee ? employee.name : "");
